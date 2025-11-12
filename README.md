@@ -1,8 +1,10 @@
-# info de la materia: S2566-0673 Topicos especiales en telematica
+# S2566-0673 Topicos especiales en telematica
 
 ## Estudiante(s): Juan David Zapata Moncada (jdzapatam@eafit.edu.co) y Juan Miguel Muñoz Garcia (jmmunozg1@eafit.edu.co)
 
 ## Profesor: Alvaro Enrique Ospina Sanjuan
+
+### Video explicativo: https://youtu.be/JTWK2fzk9UI
 
 # Proyecto 2
 
