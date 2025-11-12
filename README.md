@@ -128,6 +128,11 @@ Objetivo 4: Evolucionar el sistema a una arquitectura basada en microservicios, 
 tuvimos problemas luego de crear el cluster para la base de datos por IAM 
 <img width="2501" height="1293" alt="image" src="https://github.com/user-attachments/assets/16addc83-a202-41ff-a007-5635928b181d" />
 
+De igual forma, para el objetivo dos presentamos dificultades para crear la DB en RDS por problemas con Roles de IAM
+
+<img width="1650" height="332" alt="image" src="https://github.com/user-attachments/assets/c426e97b-d12a-4618-9d64-26862c91e7ea" />
+
+ Para este mismo objetivo no pudimos implementar un dominio con certificado, por lo que no se pudo aaceder mediante https. Las razones para no implementar esto tuvieron que ver, de nuevo, con permisos. Las opciones eran: registrar el dominio en AWS mediante Route 53 (no teniamos permisos) o comprar un dominio.
 
 # 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 
