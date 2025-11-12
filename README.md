@@ -123,6 +123,8 @@ Objetivo 4: Evolucionar el sistema a una arquitectura basada en microservicios, 
 - Mantenimiento simplificado mediante separación lógica de componentes.
 
 ## 1.2. Que aspectos NO cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
+tuvimos problemas luego de crear el cluster para la base de datos por IAM 
+<img width="2501" height="1293" alt="image" src="https://github.com/user-attachments/assets/16addc83-a202-41ff-a007-5635928b181d" />
 
 
 # 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
