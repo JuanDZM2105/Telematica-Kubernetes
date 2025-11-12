@@ -178,25 +178,156 @@ Se aplican medidas de seguridad en cada nivel:
 
 # 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
-## como se compila y ejecuta.
-## detalles del desarrollo.
-## detalles técnicos
-## descripción y como se configura los parámetros del proyecto (ej: ip, puertos, conexión a bases de datos, variables de ambiente, parámetros, etc)
-## opcional - detalles de la organización del código por carpetas o descripción de algún archivo. (ESTRUCTURA DE DIRECTORIOS Y ARCHIVOS IMPORTANTE DEL PROYECTO, comando 'tree' de linux)
-## 
-## opcionalmente - si quiere mostrar resultados o pantallazos 
+La aplicación BookStore está desarrollada principalmente en Python 3.10+, utilizando el framework Flask para la construcción del backend web.
+Durante el despliegue en contenedores y en Kubernetes se usaron herramientas y librerías adicionales orientadas a la gestión de dependencias, base de datos y despliegue en nube.
+
+| Tecnología               | Versión        | Descripción                                       |
+| ------------------------ | -------------- | ------------------------------------------------- |
+| **Python**               | 3.10 – 3.12    | Lenguaje principal del backend                    |
+| **Flask**                | 2.3.x          | Framework web microservicio en Python             |
+| **MySQL**                | 8.x            | Motor de base de datos relacional                 |
+| **Docker**               | 28.1.1         | Contenerización del entorno de aplicación         |
+| **Kubernetes (kubectl)** | v1.32.2        | Orquestador de contenedores                       |
+| **AWS CLI**              | 2.27.10        | Interfaz de línea de comandos de AWS              |
+| **eksctl**               | 0.192.0        | Creación y administración de clústeres EKS        |
+| **Helm**                 | 3.16.x         | Gestor de paquetes de Kubernetes                  |
+| **NGINX**                | 1.24.x         | Proxy inverso y balanceador de tráfico HTTP/HTTPS |
+| **Certbot**              | Última versión | Generación automática de certificados SSL         |
+
+#### Principales librerías Python
+
+Flask==2.3.2
+Werkzeug==2.3.7
+mysql-connector-python==8.3.0
+gunicorn==21.2.0
+requests==2.31.0
+
+#### Cómo se compila y ejecuta la aplicación
+
+1. Clonar el repositorio:
+
+git clone https://github.com/usuario/bookstore.git
+cd bookstore
+
+2. Construir y ejecutar los contenedores:
+   docker-compose up --build
+
+4. Acceder a la aplicación:
+   http://localhost:5000
+
+#### Ejecución en AWS EKS
+1. Compilar imagen y subir a Amazon ECR:
+   
+   docker build -t bookstore:v1 .
+docker tag bookstore:v1 090583770987.dkr.ecr.us-east-1.amazonaws.com/bookstore:v1
+docker push 090583770987.dkr.ecr.us-east-1.amazonaws.com/bookstore:v1
+
+2. eksctl create cluster -f cluster-app.yaml
+eksctl create cluster -f cluster-app.yaml
+
+
+3. Aplicar los manifiestos de Kubernetes:
+kubectl apply -f namespace.yaml
+kubectl apply -f secrets.yaml
+kubectl apply -f efs-pv.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+
+4. Verificar despliegue:
+kubectl get pods -n bookstore
+kubectl get svc -n bookstore
+
+
+5. Acceder a la URL pública del LoadBalancer.
+
+
+| Parámetro                       | Valor / Descripción                    |
+| ------------------------------- | -------------------------------------- |
+| **Puerto aplicación Flask**     | 5000                                   |
+| **Puerto NGINX (exposición)**   | 80 / 443                               |
+| **Servicio LoadBalancer (EKS)** | Puerto 80 (HTTP) → TargetPort 5000     |
+| **Base de datos RDS MySQL**     | Puerto 3306                            |
+| **Sistema de archivos EFS**     | Montado en `/mnt/efs`                  |
+| **Namespace Kubernetes**        | `bookstore`                            |
+| **Deployment Name**             | `bookstore`                            |
+| **Service Name**                | `bookstore-svc`                        |
+| **Cluster Name**                | `bookstore-eks-qa`                     |
+| **Región AWS**                  | `us-east-1`                            |
+| **Instancias EC2 (nodos)**      | `t3.medium`                            |
+| **Roles IAM**                   | `LabEksClusterRole` y `LabEksNodeRole` |
+
+Resultados visuales y comprobación (pantallazos sugeridos)
+
+<img width="2117" height="1062" alt="image" src="https://github.com/user-attachments/assets/f174de87-a71d-4b12-865c-11a83fc7f904" />
+
+<img width="1853" height="1035" alt="image" src="https://github.com/user-attachments/assets/17e31a32-dc50-4e70-b778-39d86019afa4" />
+
+<img width="2521" height="1302" alt="image" src="https://github.com/user-attachments/assets/80edc49b-387e-4b9a-87a2-91039875f595" />
+
+
 
 # 4. Descripción del ambiente de EJECUCIÓN (en producción) lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
 
+| Componente                | Tecnología           | Versión | Función principal                              |
+| ------------------------- | -------------------- | ------- | ---------------------------------------------- |
+| **Backend Web**           | Python               | 3.10    | Lenguaje del servidor Flask                    |
+|                           | Flask                | 2.3.x   | Framework web backend                          |
+| **Servidor Web**          | NGINX                | 1.24    | Proxy inverso / balanceador interno            |
+| **Contenedores**          | Docker               | 28.1.1  | Plataforma de contenerización                  |
+| **Orquestación**          | Kubernetes (kubectl) | v1.32.2 | Orquestador de servicios en EKS                |
+| **Cluster Manager**       | eksctl               | 0.192.0 | Creación y administración del clúster EKS      |
+| **Paquetería Helm**       | Helm                 | 3.16.x  | Instalación de componentes externos            |
+| **Base de datos**         | Amazon RDS (MySQL)   | 8.x     | Motor relacional administrado                  |
+| **Almacenamiento**        | Amazon EFS           | —       | Sistema de archivos compartido (ReadWriteMany) |
+| **Infraestructura Cloud** | AWS                  | —       | Proveedor de nube (EKS, EFS, RDS, ELB)         |
+
+
 # IP o nombres de dominio en nube o en la máquina servidor.
 
-## descripción y como se configura los parámetros del proyecto (ej: ip, puertos, conexión a bases de datos, variables de ambiente, parámetros, etc)
+| Recurso                      | Tipo          | Valor / Descripción                                                     |
+| ---------------------------- | ------------- | ----------------------------------------------------------------------- |
+| **Cluster EKS**              | Kubernetes    | `bookstore-eks-qa`                                                      |
+| **Namespace**                | Kubernetes    | `bookstore`                                                             |
+| **Service (LoadBalancer)**   | IP pública    | `a1b2c3d4e5f6.us-east-1.elb.amazonaws.com` *(asignada automáticamente)* |
+| **RDS Endpoint**             | Base de datos | `bookstore-db.c3y8aeeqcgi9.us-east-1.rds.amazonaws.com`                 |
+| **EFS ID**                   | Filesystem    | `fs-0cee713593f03f352`                                                  |
+| **Puerto aplicación Flask**  | HTTP interno  | `5000`                                                                  |
+| **Puerto público**           | HTTP externo  | `80`                                                                    |
+| **Puerto seguro** | HTTPS                    | `443`                                                                   |
 
-## como se lanza el servidor.
 
 ## una mini guia de como un usuario utilizaría el software o la aplicación
 
+Una vez desplegada, la aplicación BookStore es accesible desde cualquier navegador web.
+Su comportamiento es el mismo que en la versión monolítica, pero ahora con escalabilidad y alta disponibilidad en la nube.
+
+### Pasos para el usuario:
+
+1. Registro o inicio de sesión:
+El usuario accede a la interfaz principal y puede registrarse o iniciar sesión mediante formulario de autenticación.
+
+2. Exploración del catálogo:
+Desde la vista principal, se listan los libros publicados por otros usuarios.
+Cada libro incluye título, autor, descripción, precio y disponibilidad.
+
+3. Publicar un libro:
+El usuario autenticado puede crear una nueva publicación especificando detalles del libro, precio y cantidad disponible.
+
+4. Proceso de compra:
+Al seleccionar un libro, el usuario puede simular el proceso de pago y envío.
+Las órdenes quedan registradas en la base de datos RDS.
+
+5. Gestión y seguimiento:
+Los usuarios pueden revisar su historial de compras o publicaciones activas.
+
 ## opcionalmente - si quiere mostrar resultados o pantallazos 
+
+
+<img width="2520" height="1287" alt="image" src="https://github.com/user-attachments/assets/e07f905d-d4f2-4065-aa2b-c51bc1788c1b" />
+<img width="2508" height="1296" alt="image" src="https://github.com/user-attachments/assets/95079596-0e4d-4a4a-99ce-f94f5f492839" />
+
+
 
 # 5. otra información que considere relevante para esta actividad.
 
