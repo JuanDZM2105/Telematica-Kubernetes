@@ -329,10 +329,3 @@ Los usuarios pueden revisar su historial de compras o publicaciones activas.
 
 
 
-# 5. otra información que considere relevante para esta actividad.
-
-# referencias:
-<debemos siempre reconocer los créditos de partes del código que reutilizaremos, así como referencias a youtube, o referencias bibliográficas utilizadas para desarrollar el proyecto o la actividad>
-## sitio1-url 
-## sitio2-url
-## url de donde tomo info para desarrollar este proyecto﻿
