@@ -72,7 +72,7 @@ Objetivo 4: Evolucionar el sistema a una arquitectura basada en microservicios, 
 
 - Escalabilidad automática basada en carga.
 
-- Persistencia y consistencia de datos garantizada mediante RDS y EFS.
+- Persistencia y consistencia de datos garantizada mediante EFS.
 
 - Reducción del tiempo de inactividad mediante balanceo y monitoreo.
 
@@ -327,7 +327,48 @@ Los usuarios pueden revisar su historial de compras o publicaciones activas.
 
 ## opcionalmente - si quiere mostrar resultados o pantallazos 
 
+### Objetivo 1:
+Concexión ssh con instancia EC2:
+<img width="1170" height="533" alt="image" src="https://github.com/user-attachments/assets/dc0b33fc-9fbc-430b-bf85-f2a76a4f9935" />
 
+docker-compose.yml:
+<img width="1606" height="735" alt="image" src="https://github.com/user-attachments/assets/681d1f65-05f8-4f18-894e-325ee0c09044" />
+
+<img width="1364" height="450" alt="image" src="https://github.com/user-attachments/assets/8bd8eb41-ebe8-4d28-acff-57b2f54fa5b7" />
+
+.env y DockerFile
+
+<img width="1160" height="416" alt="image" src="https://github.com/user-attachments/assets/ae46b928-c0ab-4fd6-ab23-72e30b37cfa8" />
+
+<img width="1560" height="490" alt="image" src="https://github.com/user-attachments/assets/17c0c853-ae53-447c-bf14-3fbbf017f0e2" />
+
+curl al  servidor:
+
+<img width="1615" height="663" alt="image" src="https://github.com/user-attachments/assets/a41d2ae5-45a5-4b6a-8db7-c4da2faec7f2" />
+
+<img width="1169" height="483" alt="image" src="https://github.com/user-attachments/assets/ffdbbce3-82c1-4151-a0e0-9f525a7aff25" />
+
+<img width="1171" height="308" alt="image" src="https://github.com/user-attachments/assets/726241bd-095d-4623-ba61-7ec9367b7fc1" />
+
+Conexión con instancia DB:
+
+<img width="1159" height="95" alt="image" src="https://github.com/user-attachments/assets/e1f12e85-15db-4b75-bfb2-266e62042172" />
+
+Headers de seguridad:
+
+<img width="1165" height="167" alt="image" src="https://github.com/user-attachments/assets/740d001f-e002-4524-9083-ae7a139a8e67" />
+
+Encrypt y renovación automática:
+
+<img width="1426" height="641" alt="image" src="https://github.com/user-attachments/assets/868b10c0-f9fb-41a5-b443-5995b981e428" />
+
+Dominio y certificado SSl
+
+<img width="1919" height="1072" alt="image" src="https://github.com/user-attachments/assets/9069830f-cc5b-427f-81ad-c3a29d0d6373" />
+
+<img width="1163" height="296" alt="image" src="https://github.com/user-attachments/assets/ccef4225-6d37-4743-96b8-3e66a237b17b" />
+
+### Objetivos 3 y 4:
 <img width="2520" height="1287" alt="image" src="https://github.com/user-attachments/assets/e07f905d-d4f2-4065-aa2b-c51bc1788c1b" />
 <img width="2508" height="1296" alt="image" src="https://github.com/user-attachments/assets/95079596-0e4d-4a4a-99ce-f94f5f492839" />
 
