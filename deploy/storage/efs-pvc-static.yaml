@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bookstore-efs-pvc
+  namespace: bookstore
+spec:
+  accessModes: ["ReadWriteMany"]
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: efs-pv
+  storageClassName: ""

@@ -1,0 +1,26 @@
+﻿apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  nam
+  region: us-east-1
+  version: "1.30"
+
+iam:
+  withOIDC: true
+  serviceRoleARN: arn:aws:iam::090583770987:role/c172022a4460665l12302438t1w090583-LabEksClusterRole-B1QgQKhbYpod
+
+vpc:
+  # Si NO usas una VPC propia, deja que eksctl cree una básica:
+  nat:
+    gateway: Single
+  cidr: 192.168.0.0/16
+
+managedNodeGroups:
+  - name: ng-app
+    instanceType: t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    iam:
+      instanceRoleARN: arn:aws:iam::090583770987:role/c172022a4460665l12302438t1w090583770-LabEksNodeRole-ZALhpkQnRCQL

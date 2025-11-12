@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: bookstore-eks-db
+  region: us-east-1
+
+managedNodeGroups:
+  - name: ng-db
+    instanceType: t3.large
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    privateNetworking: true
+    amiFamily: AmazonLinux2023
+    iam:
+      instanceRoleARN: arn:aws:iam::090583770987:role/c172022a4460665l12302438t1w090583770-LabEksNodeRole-ZALhpkQnRCQL

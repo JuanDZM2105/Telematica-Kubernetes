@@ -1,0 +1,28 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: bookstore-eks-db
+  region: us-east-1
+  version: "1.30"   # estable y evita warnings de AL2
+
+iam:
+  withOIDC: true
+  serviceRoleARN: arn:aws:iam::090583770987:role/c172022a4460665l12302438t1w090583-LabEksClusterRole-B1QgQKhbYpod
+
+# Deja que eksctl cree VPC propia (fue el patrón que ya te funcionó)
+vpc:
+  nat:
+    gateway: Single
+  cidr: 192.168.0.0/16
+
+managedNodeGroups:
+  - name: ng-db
+    instanceType: t3.large
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    privateNetworking: true
+    amiFamily: AmazonLinux2023
+    iam:
+      instanceRoleARN: arn:aws:iam::090583770987:role/c172022a4460665l12302438t1w090583770-LabEksNodeRole-ZALhpkQnRCQL

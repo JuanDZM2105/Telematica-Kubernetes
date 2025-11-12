@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""     # PV estático => vacío
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0cee713593f03f352

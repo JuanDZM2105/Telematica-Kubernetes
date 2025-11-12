@@ -1,0 +1,36 @@
+﻿apiVersion: pxc.percona.com/v1
+kind: PerconaXtraDBCluster
+metadata:
+  name: pxc
+  namespace: db-ha
+spec:
+  crVersion: 1.15.0
+  allowUnsafeConfigurations: true
+
+  secretsName: pxc-secrets
+  tls:
+    enabled: false
+
+  pxc:
+    size: 3
+    image: percona/percona-xtradb-cluster:8.0
+    resources: {}
+    volumeSpec:
+      persistentVolumeClaim:
+        storageClassName: gp2
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi
+
+  haproxy:
+    enabled: true
+    size: 2
+    image: percona/percona-xtradb-cluster-operator:haproxy
+    resources: {}
+
+  proxysql:
+    enabled: false
+
+  logcollector:
+    enabled: false

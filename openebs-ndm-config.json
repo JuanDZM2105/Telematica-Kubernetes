@@ -1,0 +1,27 @@
+﻿{
+    "apiVersion":  "v1",
+    "data":  {
+                 "node-disk-manager.config":  "probeconfigs:\n  - key: udev-probe\n    name: udev probe\n    state: true\n  - key: seachest-probe\n    name: seachest probe\n    state: false\n  - key: smart-probe\n    name: smart probe\n    state: true\nfilterconfigs:\n  - key: os-disk-exclude-filter\n    name: os disk exclude filter\n    state: false\n    exclude: \"/,/etc/hosts,/boot\"\n  - key: vendor-filter\n    name: vendor filter\n    state: true\n    include: \"\"\n    exclude: \"CLOUDBYT,OpenEBS\"\n  - key: path-filter\n    name: path filter\n    state: true\n    include: \"\"\n    exclude: \"/dev/fd0,/dev/sr0,/dev/ram,/dev/dm-,/dev/md,/dev/rbd,/dev/zd\"\n"
+             },
+    "kind":  "ConfigMap",
+    "metadata":  {
+                     "annotations":  {
+                                         "meta.helm.sh/release-name":  "openebs",
+                                         "meta.helm.sh/release-namespace":  "openebs"
+                                     },
+                     "creationTimestamp":  "2025-11-12T00:04:06Z",
+                     "labels":  {
+                                    "app":  "openebs",
+                                    "app.kubernetes.io/managed-by":  "Helm",
+                                    "chart":  "openebs-3.10.0",
+                                    "component":  "ndm-config",
+                                    "heritage":  "Helm",
+                                    "openebs.io/component-name":  "ndm-config",
+                                    "release":  "openebs"
+                                },
+                     "name":  "openebs-ndm-config",
+                     "namespace":  "openebs",
+                     "resourceVersion":  "46640",
+                     "uid":  "0bfc1080-5c50-42c7-bd89-821f1b444e19"
+                 }
+}
