@@ -215,38 +215,46 @@ requests==2.31.0
 
 1. Clonar el repositorio:
 
-git clone https://github.com/usuario/bookstore.git
+```
+git clone https://github.com/JuanDZM2105/Telematica-Kubernetes.git
 cd bookstore
+```
 
 2. Construir y ejecutar los contenedores:
-   docker-compose up --build
-
+```
+docker-compose up --build
+```
 4. Acceder a la aplicación:
-   http://localhost:5000
-
+```
+http://localhost:5000
+```
 #### Ejecución en AWS EKS
 1. Compilar imagen y subir a Amazon ECR:
-   
-   docker build -t bookstore:v1 .
+```   
+docker build -t bookstore:v1 .
 docker tag bookstore:v1 090583770987.dkr.ecr.us-east-1.amazonaws.com/bookstore:v1
 docker push 090583770987.dkr.ecr.us-east-1.amazonaws.com/bookstore:v1
-
-2. eksctl create cluster -f cluster-app.yaml
+```
+2. 
+```
 eksctl create cluster -f cluster-app.yaml
-
+eksctl create cluster -f cluster-app.yaml
+```
 
 3. Aplicar los manifiestos de Kubernetes:
+```
 kubectl apply -f namespace.yaml
 kubectl apply -f secrets.yaml
 kubectl apply -f efs-pv.yaml
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
-
+```
 
 4. Verificar despliegue:
+```
 kubectl get pods -n bookstore
 kubectl get svc -n bookstore
-
+```
 
 5. Acceder a la URL pública del LoadBalancer.
 
